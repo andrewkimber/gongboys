@@ -1,0 +1,46 @@
+<!--
+앞선 예제에선 click, mouseover, mouseout 세 가지 event에 대해 하나의 anonymous function을 이용했었지요?
+(switch, case 분기문을 이용해서 서로 다른 기능을 하도록 하긴 헀지만, 기본적으로 같은 anonymous function이었음)
+이번에는 JSON format으로 각각 다른 anonymous function을 적용하는 syntax를 이용해봅시다.
+기본적인 틀은
+$(selector).on( { event1:funcA, event2:funcB, event3:funcC } );
+입니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .ButtonStyle {
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px 5px 5px 5px;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn').on({
+          click : function(event) {
+            $('#divResult').html('Button Clicked at X = '+event.pageX+', Y = '+event.pageY);
+            },
+          mouseover : function() {
+            $(this).addClass('ButtonStyle');
+            },
+          mouseout : function() {
+            $(this).removeClass('ButtonStyle');
+            }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btn' type="button" value="Click me"/>
+    <input id='btn2' type='button' value="Enable Mouseover Effect"/>
+    <input id='btn3' type='button' value="Disable Mouseout Effect"/>
+    <br/>
+    <div id='divResult'></div>
+  </body>
+</html>

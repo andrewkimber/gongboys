@@ -1,0 +1,26 @@
+<!-- 이미지를 누르면 슝슝 움직이는 예제입니다~
+우선, 모든 HTML element는 position property가 default로 static입니다. static이면 뭔짓을 해도 움직이지 않습니다 ㅠ 
+그렇기 때문에 element를 이동시키려면, 우선 css상에서 position property를 fixed, absolute, relative 중 하나로 explicit하게 명시해줘야한다.
+style='position:fixed' 가 없으면 작동하지 않습니다!! 
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#myImg').click(function(){
+          $(this).animate({ 'left':300 })
+                 .animate({ 'top':300 })
+                 .animate({ 'left':8 })
+                 .animate({ 'top':8 });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <img id="myImg" style='position:fixed' height='100' width='100' src='images/rooney.jpg'/>
+  </body>
+</html>

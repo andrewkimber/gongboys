@@ -1,0 +1,41 @@
+<!--
+$('div').before('<b>BEFORE</b>') : inserts the <b> element before the selected divs.
+** DIV 안에 들어가는 게 아니라, DIV 앞에!!! append,prepend는 DIV 안에 넣는거였죠?
+$('<b>BEFORE</b>').insertBefore('div') : 위와 동일. 순서만 뒤집힌 것.
+
+$('div').after('<b>AFTER</b>') : inserts the <b> element after the selected divs.
+$('<b>AFTER</b>').insertAfter('div') : 동일
+
+parameter를 꼭 <b>BEFORE</b>와 같이 explicit하게 표현할 필요없이, 원하는 element를 jquery selector로 지정해주면 됩니다.
+이때 재밌는 건, 해당 element는 html view상 원 위치에 있지 않고 이동되어버립니다!!!
+아래 line 25, 30, 37-39 참고
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src="jquery-3.1.1.js"></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('span.before').before('<b>BEFORE</b>');
+        $('<b>BEFORE</b>').insertBefore('span.insertBefore');
+        $('span.after').after('<b>AFTER</b>');
+        $('<b>AFTER</b>').insertAfter('span.insertAfter');
+        
+        $('span.tryout').after($('span.existing_span'));
+      });
+    </script>
+  </head>
+  <body>
+    <span class="existing_span">***순간이동!!!!***</span> <!--이 놈은 after method로 인해 이동되어버립니다!!!!!! html inspect상 이 위치엔 주석만이 남게 되지요.-->
+    <span class="before">DIV1</span><br/>
+    <span class="insertBefore">DIV2</span><br/>
+    <br/><br/>
+    <span class='after'>DIV3</span><br/>
+    <span class='insertAfter'>DIV4</span>
+    <br/><br/>
+    <span class="tryout">스팬스팬!!</span><br/>
+    <span class="tryout">스팬스팬!!</span><br/>
+    <span class="tryout">스팬스팬!!</span><br/>
+  </body>
+</html>

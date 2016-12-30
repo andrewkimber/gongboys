@@ -1,0 +1,52 @@
+<!--
+1. jQuery에서의 each loop를 눈여겨봅시다~
+2. 여러 element를 동시에 select할 때, 'div, a, span' 입니다. 'div', 'a', 'span'이 아닙니다!!!!
+3. nested 된 element만을 select 할 땐 'div a' 로 하면 됩니다~
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        alert($('td').length);
+
+        $('tr').each(function () {
+          alert($(this).html());
+        });
+
+        $('span,a,div').css('background-color','red');
+        
+        $('div a').css('font-size', '50px');
+      });
+    </script>
+    
+    <table border="1">
+      <tbody>
+      <tr>
+        <td>A</td><td>B</td><td>C</td>
+      </tr>
+      <tr>
+        <td>D</td><td>E</td><td>F</td>
+      </tr>
+      <tr>
+        <td>G</td><td>H</td><td>I</td>
+      </tr>
+      <tr>
+        <td>J</td><td>K</td><td>L</td>
+      </tr>
+      </tbody>
+    </table>
+    
+    <span>I'm a span!</span></br>
+    <a>I'm an anchor!</a></br>
+    <div>I'm a div! </br>
+    <a>I'm an anchor INSIDE div!</a>
+    </div>
+    
+  </body>
+</html>

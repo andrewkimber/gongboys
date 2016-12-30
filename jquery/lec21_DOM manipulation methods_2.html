@@ -1,0 +1,26 @@
+<!--
+다만, attribute setter라도 아래 코드와 같이 서로 다른 값을 set 하려면 당연히 each iteration을 해야겠지요?
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('div').each(function(i){
+          $(this).attr('title','NEW TITLE'+(i+1));
+          alert($(this).attr('title'));
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="div1" title="TITLE1">
+      DIV1
+    </div>
+    <div id="div2" title='TITLE2'>
+      DIV2
+    </div>
+  </body>
+</html>

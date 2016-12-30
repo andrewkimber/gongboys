@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+        <script src='jquery-3.1.1.js'></script>
+        <script type='text/javascript'>
+          $(document).ready(function() {
+            $('div[title]').filter(function(){
+              return (/Div/i).test($(this).attr('title'));
+            }).css('border','2px solid red');
+          });
+          
+          $(document).ready(function(){
+            $('span[title]').filter(function(){
+              return RegExp('Span','i').test($(this).attr('title'));
+            }).css('border','2px solid blue');
+          });
+        </script>
+    </head>
+    <body>
+      <div title="DivTitle1">DIV1</div>
+      <div title="DIVTITLE2">DIV2</div>
+      <div title="divtitle3">DIV3</div>
+      <span title="Span1">SPAN1</span>
+      <span title="SPAN2">SPAN2</span>
+      <span title="span3">SPAN3</span>
+    </body>
+  </html>
+  
+<!--
+$('div[title*="Div"]') would only return the first div. let's make the attribute contains selector case insensitive!
+(/Div/i) is the regular expression, and i stands for insensitivity.
+
+RegExp function is the regular expression generator function!! 꽤나 자주 사용할 수 있으니 반드시 알아두자!!! 
+-->

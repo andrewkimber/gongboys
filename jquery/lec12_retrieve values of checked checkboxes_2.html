@@ -1,0 +1,52 @@
+<!--
+lec12_select values of checked checkboxes_2.thml 에서는 the action takes event instantaneoulsy upon clicking any checkbox.
+lec12_select values of checked checkboxes_1.html took event upon clicking on the submit buttons.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('input[name="skills"]').click(function(){
+           getCheckedCheckboxes("skills");
+        });
+      });
+      
+      $(document).ready(function(){
+        $('input[name="languages"]').click(function(){
+          getCheckedCheckboxes("languages");
+        });
+      });
+      
+      var getCheckedCheckboxes = function(name) {
+        var result=$('input[name="'+ name +'"]:checked');
+        if (result.length >0) {
+          var skillsString = result.length +" "+ name+ " checked. <br/>";
+          result.each(function(){
+            skillsString += $(this).val() + " <br/>";
+          });
+        $('#Result'+name).html(skillsString);
+        }
+        else {
+          $('#Result'+name).html("No Checkbox checked.");
+        }
+      };
+    </script>
+  </head>
+  <body>
+    Skills:
+    <input type="checkbox" name="skills" value="Javascript"/>Javascript
+    <input type="checkbox" name="skills" value="Ruby on Rails"/>Ruby on Rails
+    <input type="checkbox" name="skills" value="AngularJS"/>AngularJS
+    <br/><br/>
+    Languages:
+    <input type="checkbox" name="languages" value="English"/>English
+    <input type="checkbox" name="languages" value="Korean"/>Korean
+    <input type="checkbox" name="languages" value="Chinese"/>Chinese
+    <br/><br/>
+    <div id="Resultskills"></div>
+    <div id="Resultlanguages"></div>
+  </body>
+</html>

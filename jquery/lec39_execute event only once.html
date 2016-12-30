@@ -1,0 +1,56 @@
+<!--
+Event를 딱 한번만 발생하게 하고 싶다면, 능동적으로 event handler를 off 해버리면 됩니다.
+또 다른 방법은, one function을 쓰는 겁니다.
+#btn1은 on, off를 이용하는 방법이고, #btn2은 one을 이용한 것입니다. 더 간단하죠?
+
+#btn3는, JSON을 이용해서 한번에 click, mouseover, mouseout을 다 정의했습니다.
+이런 경우, one function을 쓰게 되면 어떻게 될까요? 셋 중 딱 한 event만 딱 한번 발현될까요, 아니면 세 event 모두 한번씩만 일어날까요?
+정답은 후자입니다. 한번의 click event, 한번의 mouseover event, 한번의 mouseout event 가 발현됩니다.
+
+그렇다면, selector에 의해 여러 element가 select 된 경우, 통틀어서 최대 한번만 발현될까요? 아니면 각 element에서 최대 한번씩, 그러니까 최대 (select된 element 수) 만큼 발현될까요?
+정답은 후자입니다. "각각의" element에 대해서 maximum 1번씩 발현되는 겁니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn1').on('click',function(){
+          alert('Button Clicked');
+          $(this).off();
+        });
+        
+        $('#btn2').one('click',function(){
+          alert('Button clicked only once!!');
+        });
+        
+        $('#btn3').one( {
+          'click' : function() {
+            alert('Button clicked!!');
+          },
+          'mouseover' : function() {
+            $(this).css('background-color','red');
+          },
+          'mouseout' : function() {
+            $(this).css('background-color','white');
+          }
+        });
+        
+        $('.btn4').one('click',function(){
+          alert('몇 번까지 발현될까요? 한번? 아니면 세번?');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btn1' type='button' value='Click me!'/>
+    <input id='btn2' type='button' value='Click me only once!'/>
+    <input id='btn3' type='button' value='I am binded to three event handlers!'/>
+    <input class='btn4' type='button' value="난 세쌍둥이지롱!"/>
+    <input class='btn4' type='button' value="난 세쌍둥이지롱!"/>
+    <input class='btn4' type='button' value="난 세쌍둥이지롱!"/>
+  </body>
+</html>

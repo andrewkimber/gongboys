@@ -1,0 +1,56 @@
+<!--
+1. animation 없이 결과만 딱 나타나게 하고 싶을 때: $.fx.off=true로 세팅하면 됩니다.
+checkbox의 true/false는 $('[type="checkbox"]').is(":checked")를 이용하면 됨!
+
+2. 만약 chained된 action들이 순차적으로 일어나기를 원하지 않고, 한꺼번에 동시다발적으로 일어나기를 원한다면,
+.animate(properties, {duration: 1000, queue: false}) 처럼, queue:false를 추가해주면 됩니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <title></title>
+  <script src='jquery-3.1.1.js'></script>
+  <style>
+    .myDivClass {
+      width:150px;
+      padding:5px;
+      font-size:18px;
+      border:1px solid grey;
+      opacity:0.4;
+      background-color: red;
+      color:white;
+    }
+  </style>
+  <script type='text/javascript'>
+    $(document).ready(function(){
+      $('#btn').click(function(){
+        //$.fx.off = true 일 경우 animation off 됩니다!
+        $.fx.off = $('#chkbx').is(":checked");
+        
+        $('#div1')
+          .animate({'width':500},{duration: 1500, queue: false})
+          .animate({'padding':20},{duration: 1500, queue: false})
+          .animate({'font-size':50},{duration: 1500, queue: false})
+          .animate({'border-width':10},{duration: 1500, queue: false})
+          .animate({'opacity':1},{duration: 1500, queue: false});
+          
+        //사실, div1에서 모든 animation의 duration이 동일하고, 전부 다 동시다발적으로 일어나도록 queue:false로 설정했기 때문에, 아래의 코드와 완벽히 동일합니다.
+        $('#div2').animate( {
+          'width':500,
+          'padding':20,
+          'font-size':50,
+          'border-width':10,
+          'opacity':1
+        }, 1500);
+      });
+    });
+  </script>
+  <body>
+    <input type='button' id='btn' value="Start animation"/>
+    <input type='checkbox' id='chkbx' />Turn off animations 
+    <br/><br/>
+    <div id="div1" class='myDivClass'>jQuery animations </div>
+    <br/> <br/>
+    <div id="div2" class='myDivClass'>복제품</div>
+  </body>
+</html>

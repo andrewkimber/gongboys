@@ -1,0 +1,29 @@
+class ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  include SessionsHelper
+  
+  private
+  
+  def logged_in_user
+    unless logged_in?
+      store_location
+      redirect_to login_path, notice: 'Please log in'
+    end
+  end
+
+  def remember_location
+    session[:back_paths] ||= []
+    unless session[:back_paths].last == request.fullpath
+      session[:back_paths] << request.fullpath
+    end
+    # make sure that the array doesn't bloat too much
+    session[:back_paths] = session[:back_paths][-10..-1]
+  end
+
+  def back
+    session[:back_paths] ||= []
+    session[:back_paths].pop || :back
+  end
+end

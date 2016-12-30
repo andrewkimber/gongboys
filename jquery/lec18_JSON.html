@@ -1,0 +1,41 @@
+<!--
+JSON tands for JavaScript Object Notation. JSON is a lightweight data-interchange format.
+JSON is an easier-to-use alternative to XML.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var employeeJSON = {
+          'Todd': {
+            'firstName' : 'Todd',
+            'lastName' : 'Haynes',
+            'gender' : 'Male',
+            'salary' : '150000'
+          },
+          'Ian': {
+            'firstName' : 'Ian',
+            'lastName' : 'McCullen',
+            'gender' : 'Male',
+            'salary' : '200000'
+          }
+        };
+        
+        var result = '';
+        result+= 'First name = ' + employeeJSON.Todd.firstName + '<br/>';
+        result+= 'Last name = ' + employeeJSON.Todd.lastName + '<br/>';
+        result+= 'Gender = ' + employeeJSON.Todd.gender + '<br/>';
+        result+= 'Salary = ' + employeeJSON.Todd.salary + '<br/>';
+        
+        $('#divResult').html(result);
+      });
+    </script> 
+  </head>
+  <body>
+    <div id='divResult'></div>
+  </body>
+</html>

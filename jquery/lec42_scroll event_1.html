@@ -1,0 +1,38 @@
+<!--
+scroll event!
+꼭 페이지 스크롤이 아니더라도, frames, 혹은 css상 overflow:scroll;로 세팅된 elements에 대해서 다 발현됩니다.
+아래 div를 보면, css에서 overflow: scroll로 설정했기 때문에 스크롤바가 있습니다~
+아래 span은 처음엔 display:none 되어있지만, scroll event handler에 의해 다시 나타나게 됩니다.그리고는 서서히 fadeOut 되지요....
+한 발자국 더 나아가, 몇 번 scroll event가 fire되었는지 보려면 scroll event가 발현될때마다 count += 1 시켜주면 되겠지요.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        var count=0;
+        $('div').on('scroll',function(){
+          count+=1;
+          $('span#count').text(count);
+          $('span').css('display','inline').fadeOut(1000);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div style="height:200px; width:300px; border:1px solid black; overflow:scroll">
+      Ubi enim est thesaurus tuus, ibi est et cor tuum. Lucerna corporis tui est oculus tuus. Si oculus tuus fuerit simplex, totum corpus tuum lucidum erit. Si autem oculus tuus fuerit nequam, totum corpus tuum tenebrosum erit. Si ergo lumen, quod in te est, tenebræ sunt ipsæ tenebræ quantæ erunt?
+      
+Nemo potest duobus dominis servire aut enim unum odio habebit, et alterum diliget aut unum sustinebit, et alterum contemnet. Non potestis Deo servire et mammonæ. Ideo dico vobis, ne solliciti sitis animæ vestræ quid manducetis, neque corpori vestro quid induamini. Nonne anima plus est quam esca, et corpus plus quam vestimentum? Respicite volatilia cæli, quoniam non serunt, neque metunt, neque congregant in horrea et Pater vester cælestis pascit illa. Nonne vos magis pluris estis illis?
+
+Quis autem vestrum cogitans potest adjicere ad staturam suam cubitum unum? Et de vestimento quid solliciti estis? Considerate lilia agri quomodo crescunt non laborant, neque nent. Dico autem vobis, quoniam nec Salomon in omni gloria sua coopertus est sicut unum ex istis.
+
+Si autem fœnum agri, quod hodie est, et cras in clibanum mittitur, Deus sic vestit, quanto magis vos modicæ fidei? Nolite ergo solliciti esse, dicentes Quid manducabimus, aut quid bibemus, aut quo operiemur? hæc enim omnia gentes inquirunt. Scit enim Pater vester, quia his omnibus indigetis.
+
+Quærite ergo primum regnum Dei, et justitiam ejus et hæc omnia adjicientur vobis. Nolite ergo solliciti esse in crastinum. Crastinus enim dies sollicitus erit sibi ipsi sufficit diei malitia sua.
+    </div>
+    <span style="display:none; color:blue">SCROLL EVENT TRIGGERED <span id='count'>0 </span> times!</span>
+  </body>
+</html>

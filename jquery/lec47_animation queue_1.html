@@ -1,0 +1,93 @@
+<!--
+queue function에 대해 배웁시다. (굉장히 난해합니다.....)
+
+.queue([queuename],[callback])
+
+**Queue: 순서, 줄서다 의 의미!
+
+queue method의 활용을 두 가지로 나눠서 이해해봅시다.
+
+1. .queue([queuename]): callback parameter를 생략할 경우, 일종의 getter method로 작용해서 selector에 예약되어있는 functions들을 return합니다.
+이때, queuename의 default는 'fx'로, $(selector).queue('fx').length를 하면, '현상황에서' 예약되어있는 function의 갯수가 되겠습니다.
+
+2. .queue(callback): 이 경우, 다음 순서로 callback event 가 execute 됩니다...만 이따위로 설명하면 이해가 안되니까, 예를 들어 설명을 합시다.
+예를 들어, $(selector).funcA.funcB.funcC 등의 순서로 chain이 되어 있을 때,
+$(selector).funcA.queue(callback).funcB.funcC 처럼, A 와 B 사이에 queue 함수를 통해 callback을 끼워넣으면,
+A->B->C 순서로 실행되지 않고, A->callback 순서로 execute됩니다! (비유하자면... 가로채기, 혹은 새치기라고 생각합시다!)
+callback은 단일 함수일 수도 있고, callback 자체가 여러개의 함수로 이루어진 new queue일 수도 있는데, 후자의 경우 A->new queue 의 순서로 execute되게 됩니다.
+만약, A->callback->B->C 처럼, callback 이후에 다시 original queue로 돌아오고 싶다면, 반드시 callback 내부에서 .dequeue(); 해야 합니다!!!
+
+이제 아래 코드를 천천히... 음미해봅시다...
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      div {
+        margin: 3px;
+        height:40px;
+        width: 40px;
+        position: absolute;
+        left:0px;
+        top:60px;
+        background:green;
+        display: none;
+      }
+      
+      div.newcolor {
+        background-color:blue;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        
+        var Div= $('div')
+        
+        $('#btnStart').click(function(){
+          Div
+            .show("slow")
+            .queue(function(){
+              $(this).addClass('newcolor').dequeue();
+            })
+            .animate({left:"+=200"},2000)
+            .slideUp(1000)
+            .slideDown(1500)
+            .queue(function(){
+              $(this).removeClass('newcolor');
+              $(this).dequeue();
+            })
+            .animate({left:"-=200"}, "fast")
+            .hide("slow")
+            .show(1200)
+            .hide('fast');
+        });
+        
+        queuelength();
+        
+        // 50ms 단위로 계속 queuelength() function을 실시간 update하기 위한 코드입니다.
+        //setTimeout(queuelength,50)를 통해 recursively repeat 하는 것을 눈여겨봅시다.
+        function queuelength() {
+        var queueObject=Div.queue('fx');
+        $('#result').html("Queue length: " +queueObject.length);
+        setTimeout(queuelength,50);
+        }
+        
+        //div에다가 강제로 empty queue를 연결해줌으로써, animation chain을 멈추도록!!!!
+        // .stop()을 붙히면, click 하는 '당장' 딱 멈춥니다. 반면 .stop()이 없으면, click했을 때 진행중이던 animation은 끝까지 실행된 후 멈춥니다.
+        $('#btnStop').click(function(){
+          Div.queue('fx',[]).stop();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id="btnStart" type='button' value='Start animation'/>
+    <input id="btnStop" type='button' value="Stop animation" />
+    <br/><br/>
+    <div></div>
+    <span id='result'></span>
+  </body>
+</html>

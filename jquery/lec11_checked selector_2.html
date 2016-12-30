@@ -1,0 +1,37 @@
+<!--
+Practice on if phrase, iteration and input selectors!!
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btnSubmit').click(function(){
+          var result = $('input[type="checkbox"]:checked');
+          if (result.length>0) {
+            var resultString = result.length + " checkboxe(s) checked. <br/>";
+            result.each(function(){
+              resultString += $(this).val()+"<br/>";
+            });
+            $('#divResult').html(resultString);
+          }
+          else {
+            $('#divResult').html("No checkbox checked");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    Skills:
+    <input type="checkbox" name="skills" value="Javascript"/> Javascript
+    <input type="checkbox" name="skills" value="Ruby on Rails"/> Ruby on Rails
+    <input type="checkbox" name="skils" value="AngularJS"/> AngularJS
+    <br/><br/>
+    <input id="btnSubmit" type="submit" value="submit"/>
+    <br/><br/>
+    <div id="divResult"></div>
+  </body>
+</html>

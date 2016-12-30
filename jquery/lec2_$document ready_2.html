@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <title></title>
+      <script src='jquery-3.1.1.js'></script>
+      <script type="text/javascript">
+//        document.ready, window.on('load', ) both methods just work fine. Don't mind on which one to use!!!!
+        $(window).on('load',function() {
+          $("#div1").html("Height = " + $("#img1").height()+ " <br/>" + "Width = " + $("#img1").width());
+        });
+      </script>
+    </head>
+    <body>
+      <div id="div1"></div>
+      <img id="img1" src = "lec2_selfie.jpg"/>
+    </body>
+  </html>

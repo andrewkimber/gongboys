@@ -1,0 +1,33 @@
+<!--
+$('input:checked') is the correct way to select the checked radio button.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+      <script src="jquery-3.1.1.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('#btnSubmit').click(function(){
+            var checked_radio = $('input[type="radio"]:checked');
+            if (checked_radio.length>0) {
+              $('div#divResult').html(checked_radio.val() + " is checked.");
+            }
+            else {
+              $('div#divResult').html("No radio button checked.");
+            }
+          });
+        });
+      </script>
+  </head>
+  <body style="font-family:Helvetica">
+    Gender:
+    <input type="radio" name="gender" value="Male">Male
+    <input type="radio" name="gender" value='Female'>Female
+    <br/><br/>
+    <input id="btnSubmit" type="submit" value="submit"/>
+    <br/><br/>
+    <div id="divResult">
+    </div>
+  </body>
+</html>

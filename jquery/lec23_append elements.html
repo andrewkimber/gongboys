@@ -1,0 +1,31 @@
+<!--
+$('div').append('<b>APPENDED</b>') : 'div' element의 내용물의 제일 뒤에다가 <b>APPENDED</b>를 붙입니다.
+$('<b>APPENDED</b>').appendTo('div') : 위와 동일. 주어와 목적어가 바꼈을 뿐.
+******주의할 점은, appendTo에서 $ 가 ('div') 앞에 붙는 게 아니라 제일 앞에 붙는다는 것!
+
+$('div').prepend('<b>PREPENDED</b>') : 'div' element의 내용물의 제일 앞에다가 <b>APPENDED</b>를 붙입니다.
+$('<b>PREPENDED</b>').prependTo($('div')) : 위와 동일. 주어와 목적어가 바꼈을 뿐.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#append1').append('<b>APPENDED</b>');
+        $('<b>APPENDED</b>').appendTo('#append2');
+        
+        $('#prepend1').prepend('<b>PREPENDED</b>');
+        $('<b>PREPENDED</b>').prependTo('#prepend2');
+      });
+    </script>
+  </head>
+  <body>
+    <div id='append1'>DIV1 </div>
+    <div id='append2'>DIV2 </div>
+    <br/>
+    <div id='prepend1'> DIV3</div>
+    <div id='prepend2'> DIV4</div>
+  </body>
+</html>

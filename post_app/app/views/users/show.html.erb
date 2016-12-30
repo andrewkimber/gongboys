@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+
+  <strong>Name:</strong>
+  <%= @user.name %>
+<br>
+  <strong>Email:</strong>
+  <%= @user.email %>
+<br>
+  <strong># of Posts:</strong>
+  <%= @user.posts.count%>
+<br>
+  <strong># of Comments:</strong>
+  <%= @user.comments.count%>
+  <br>
+  
+<%= link_to 'Edit User Info', edit_user_path(@user) %>
+<hr>
+<%= will_paginate @posts, class: "apple_pagination" %>
+<br>
+<%=render @posts %>
+<br>
+<%= will_paginate(@posts, class: "apple_pagination")%>
+
+
+

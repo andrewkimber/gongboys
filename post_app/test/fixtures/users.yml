@@ -1,0 +1,9 @@
+andrew:
+  name: 김재윤
+  email: andrewkimber@naver.com
+  password_digest: <%= User.digest('asdfasdf')%>
+  
+archer:
+  name: Sterling Archer
+  email: duchess@example.gov
+  password_digest: <%= User.digest('asdfasdf') %>

@@ -1,0 +1,37 @@
+<!--
+map method도 each랑 거의 비슷합니다.
+차이점이라면, matched elements를 이용해서 array를 만들려한다거나, concatenated string을 만들려고 한다면 each보다 map을 쓰는 게 더 일반적이라는 것입니다.
+
+line 15-20은 each method를 이용해서 array를 만드는 코드이고,
+line 23-25는 map method를 이용해서 array를 만드는 코드. get() method는 return 된 object를 javascript array로 변환시켜주는 메쏘드입니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        var result1 = [];
+        
+        $('li').each(function(index, element) {
+          result1.push($(element).text());
+        });
+        alert(result1);
+        
+        alert($('li').map(function(index,element){
+          return $(element).text();
+        }).get());
+      });
+    </script>
+  </head>
+  <body>
+     <ul>
+      <li>반도</li>
+      <li>성진국</li>
+      <li>대륙</li>
+      <li>천조국</li>
+     </ul>
+  </body>
+</html>

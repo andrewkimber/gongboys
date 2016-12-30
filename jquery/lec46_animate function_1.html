@@ -1,0 +1,42 @@
+<!--
+.animate(properties,duration,easing,complete). 뒤에 3개 parameter는 선택적.
+properties: pairs of css property and value(in JSON)
+duration: default는 400ms
+easing: 변화의 그래프. default는 swing(S자 커브로 변한다는 뜻). linear도 가능한 옵션 중 하나입니다.
+complete: animation이 끝난 후에 callback할 함수!!
+(마치, 앞서 44강에서 fadeOut(duration,functionA)를 하면 duration(ms)동안 fadeOut을 마친 후, 그 다음 functionA를 실행하는 것과 같은 방식!)
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn').click(function(){
+          $('#myDiv').animate({'font-size': '50'},2000,'swing');
+        });
+        
+        $('#myImg').on({
+          'mouseover' : function(){
+            $(this).animate({ 'height':400, 'width':400},2000,'linear',animationComplete);
+          },
+          'mouseout' : function(){
+            $(this).animate({ 'height':100, 'width':100},2000,'linear',animationComplete);
+          }
+        });
+        
+        function animationComplete(){ alert('Animation Complete!');}
+      });
+    </script>
+  </head>
+  <body>
+    <input type='button' id='btn' value='Animate!' />
+    <div id='myDiv'>
+      jQuery animate function!
+    </div>
+    <br/><br/>
+    <img id='myImg' height="100" width="100" src="images/ibrahimovic.jpg" />
+  </body>
+</html>

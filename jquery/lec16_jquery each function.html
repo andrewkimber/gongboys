@@ -1,0 +1,35 @@
+<!--
+each function 연습합시다~
+
+each loop에서 exit하려면 return false하면 됩니다! 
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('li').each(function(index) {
+          if ($(this).text()=='UK') {
+            return false;
+          }
+          alert(index+" : "+$(this).text());
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>US</li>
+      <li>India</li>
+      <li>Korea</li>
+      <li>China</li>
+      <li>UK</li>
+      <li>Australia</li>
+      <li>Germany</li>
+    </ul>
+    <div id="divResult"></div>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!--
+event handler에 custom data를 전달해주려면, on(event-type,data,function) 순으로 패스해주면 된다.
+아래처럼, JSON format으로 data를 전달할 수 있음. 아래 function에서 해당 data에 접근하려면 event.data.key 로 접근하면 됩니다!!
+
+** line 32의 (argument ? a : b) syntax는 다음과 동일한 코드.
+if (argument==true) { return a }
+else {return b }
+즉, btn2를 눌렀을 경우, firstName만 "Jade"로 정의되고 lastName은 없으므로 "Hello, Jade!" 만 출력되도록 만들기 위한 코드입니다.
+
+**btn3를 누를 경우, 아무런 custom data도 전달하지 않았으므로, 이런 경우엔 아예 "No name provided"를 출력하도록 SayHello에 if 분기문을 삽입했습니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn1').on('click', { firstName: "John", lastName: "Mayer" }, SayHello);
+        
+        $('#btn2').on('click', {firstName: "Katie"}, SayHello);
+        
+        $('#btn3').on('click',SayHello);
+        
+        function SayHello(event) {
+          var string='';
+            if (event.data == null) {
+              string += "No name provided.";
+            }
+            else {
+              string += "Hello, "+event.data.firstName + (event.data.lastName==null ? '!' : ' '+event.data.lastName+'!');
+            }
+          $('#div1').html(string);
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btn1' type='button' value='Button 1'/>
+    <input id='btn2' type='button' value='Button 2'/>
+    <input id='btn3' type='button' value='Button 3'/>
+    <div id='div1'></div>
+  </body>
+</html>

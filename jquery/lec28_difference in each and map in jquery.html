@@ -1,0 +1,46 @@
+<!--
+$.map is a mutable iterator, while $.each is an immutable iterator!
+$.map returns a NEW array, while $.each returns the ORIGINAL array. 반대로 말하면, $.each는 original array에 변화를 가할 수 없다! (사실 위의 줄과 같은 의미)
+$.map의 callback argument 순서는 element, index 순이지만, $.each의 callback argument는 index, element 순. 아래에서 result2와 result3를 비교해볼 것
+$.map의 경우, 중간에 iteration을 멈출 방법이 없지만, $.each는 중간에 return false를 하면 iteration이 멈춘다. line 31-38 참고!!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        var intArray = [1,2,3,4,5];
+        
+        function funcA(index,element) { return element * 5; }
+        function funcB(element,index) { return element * 5; }
+        
+        var result1 = $.each(intArray,funcA);
+        var result2 = $.map(intArray, funcB);
+        var result3 = $.map(intArray, funcA);
+        
+        document.write('EACH = ' + result1);
+        document.write('<br/>');
+        document.write('MAP = ' + result2);
+        document.write('<br/>');
+        document.write('MAP에서 element와 index의 순서를 바꿨을 경우 = '+result3);
+        document.write('<br/><br/>');
+        
+        $.each(intArray,function(index,element){
+          if (element==3) {return false;}
+          document.write(element+', ');
+        });
+        document.write('<br/>');
+        $.map(intArray,function(element,index){
+          if (element==3) {return false;}
+          document.write(element+', ');
+        });
+      }); 
+    </script>
+  </head>
+  <body>
+    
+  </body>
+</html>

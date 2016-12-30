@@ -1,0 +1,57 @@
+<!--
+addClass, removeClass를 이용해서, input box 눌렀을 때 해당 input box에 textboxStyle을 적용시키는 예제.
+FOCUS event handler, BLUR event handler의 사용법을 눈여겨봅시다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .textboxStyle {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('input[type="text"]').each(function(){
+          $(this).focus(function(){
+            $(this).addClass('textboxStyle');
+          });
+          
+          $(this).blur(function(){
+            $(this).removeClass('textboxStyle');
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>First Name</td>
+        <td><input type='text'/></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><input type='text'/></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>
+          <select>
+            <option value="select">Please Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="text"/></td>
+      </tr>
+    </table>
+  </body>
+</html>

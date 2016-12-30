@@ -1,0 +1,9 @@
+<%=div_for(comment) do%>
+  <b><%=link_to comment.user.name, comment.user%></b>
+  <span id="body"><%= comment.body %></span>
+  <b id="created_at"><%= comment.created_at.strftime("%Y/%m/%d %H:%M")%></b>
+  <%= link_to 'Edit', edit_comment_path(comment.id), id: 'editbtn_%{comment_id}' % {:comment_id => comment.id},remote: true%>
+  <a id="newUpdateBtn" style="display:none; cursor: pointer">Update</a>
+  <%= link_to 'Destroy', comment, :method=>:delete, id: 'destroybtn_%{comment_id}' % {:comment_id => comment.id}, data: {confirm: 'Are you sure?'}, remote: true%>
+  
+<%end%>

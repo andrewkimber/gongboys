@@ -1,0 +1,37 @@
+<!--
+This time, we try the same thing on multiple selects.
+To enable multiple selection, additional multiple="multiple" attr is needed for the select tag.
+To select multiple options, press and hold ctrl.
+-->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Page Title</title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $('#selectCountries').change(function(){
+              var selected= $('#selectCountries option:selected') ;
+              var selectedString = '';
+              selected.each(function(){
+                selectedString += 'Value = ' + $(this).val() + ', Text = ' + $(this).text()+"<br/>";
+              });
+              $('#divResult').html(selectedString);
+            });
+        });
+    </script>
+</head>
+<body>
+    Country:
+    <select id="selectCountries" multiple="multiple">
+        <option value="USA">United States</option>
+        <option value="ROK">Republic of Korea</option>
+        <option value="UK">United Kingdom</option>
+        <option value="AU">Austrailia</option>
+    </select>
+    <br/><br/>
+    <div id="divResult"></div>
+</body>
+</html>

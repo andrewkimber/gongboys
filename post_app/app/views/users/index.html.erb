@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1><b>ALL USERS</b></h1>
+
+
+</br>
+
+<% @users.each do |user| %>
+  <%= link_to user.name, user %> | <%= link_to user.email,user %> | 총 글: <%= user.posts.count%>, 총 댓글: <%= user.comments.count%>
+  <% unless current_user.nil? %>
+    <% if current_user.admin? %>
+      <% if current_user == user %>
+        <%= link_to 'Edit', edit_user_path(user), id: 'only_me' %>
+      <% end %>
+      <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, id: 'only_me' %>
+    <% elsif current_user == user %>
+      <%= link_to 'Edit', edit_user_path(user), id: 'only_me' %>
+      <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, id: 'only_me' %>
+    <% end %>
+  <% end %>
+    </br>
+<% end %>
+
+<%= will_paginate class: "apple_pagination" %> 
+
+<br>
+
+<%= link_to 'Sign up', new_user_path %>

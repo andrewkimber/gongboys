@@ -1,0 +1,83 @@
+<!--
+hasClass : returns true if an element has the specified class!
+addClass : Adds one or more specified classes. 여러개를 한꺼번에 추가하려면 space로 구분하면 됨.
+removeClass : Removes one or more specified classes. 여러개를 한꺼번에 지우려면 space로 구분하면 됨. 전부 다 지우려면 parameter로 아무것도 pass 안하면 됨.
+toggleClass : Toggles one or more specified classes. 해당 class가 있으면 지우고, 없으면 더함!!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .boldClass {
+        font-weight: bold;
+      }
+      .italicsClass {
+        font-style: italic;
+      }
+      .colorClass {
+        color: blue;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn1').click(function(){
+          $('p').addClass('colorClass');
+        });
+        $('#btn2').click(function(){
+          $('p').removeClass('colorClass');
+        });
+        $('#btn3').click(function(){
+          $('p').addClass('italicsClass');
+        });
+        $('#btn4').click(function(){
+          $('p').removeClass('italicsClass');
+        });
+        $('#btn5').click(function(){
+          $('p').addClass('boldClass');
+        });
+        $('#btn6').click(function(){
+          $('p').removeClass('boldClass');
+        });
+        
+        $('#btn7').click(function(){
+          $('p').addClass('colorClass boldClass italicsClass');
+        });
+        $('#btn8').click(function(){
+          $('p').removeClass();
+        });
+        
+        $('#btn9').click(function(){
+          $('p').toggleClass( 'colorClass boldClass italicsClass');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Cogito ergo sum.</p>
+    <table>
+      <tr>
+        <td><input id='btn1' style='width:250px' type='button' value="Add Color Class"/></td>
+        <td><input id='btn2' style='width:250px' type='button' value="Remove Color Class"/></td>
+      </tr>
+      <tr>
+        <td><input id='btn3' style='width:250px' type='button' value='Add Italics Class'/></td>
+        <td><input id='btn4' style='width:250px' type='button' value='Remove Italics Class'/></td>
+      </tr>
+      <tr>
+        <td><input id='btn5' style='width:250px' type='button' value='Add Bold Class'/></td>
+        <td><input id='btn6' style='width:250px' type='button' value='Remove Bold Class'/></td>
+      </tr>
+      <tr>
+        <td><input id='btn7' style='width:250px' type='button' value='Add all three Classes'/></td>
+        <td><input id='btn8' style='width:250px' type='button' value='Return to Default'/></td>
+      </tr>
+      <tr>
+        <td><input id='btn9' style='width:250px' type='button' value='Toggle Classes'/></td>
+        <td></td>
+      </tr>
+    </table>
+  </body>
+</html>

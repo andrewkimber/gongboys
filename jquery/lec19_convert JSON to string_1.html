@@ -1,0 +1,35 @@
+ <!--
+In order to convert JSON into string, use JSON.stringify(json_object) method!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var employeeJSON = {
+          'Todd': {
+            'firstName' : 'Todd',
+            'lastName' : 'Haynes',
+            'gender' : 'Male',
+            'salary' : '150000'
+          },
+          'Ian': {
+            'firstName' : 'Ian',
+            'lastName' : 'McCullen',
+            'gender' : 'Male',
+            'salary' : '200000'
+          }
+        };
+        
+        var result = JSON.stringify(employeeJSON);
+        $('#divResult').html(result);
+      });
+    </script> 
+  </head>
+  <body>
+    <div id='divResult'></div>
+  </body>
+</html>

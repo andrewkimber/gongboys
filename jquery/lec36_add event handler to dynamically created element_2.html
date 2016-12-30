@@ -1,0 +1,42 @@
+<!--
+lec36_1.html에서는 $('li').on('click',function(){$(this).fadeOut(500);}) 의 코드가
+지금의 $('ul').on('click','li',function(){$(this).fadeOut(500);})으로 바꼈습니다.
+
+on method는 on(event_type,selector,data,callback) 의 parameter로 이루어져있습니다. (35강에서 data 에 대해 공부했었지요)
+$(SelectorA).on(click,selectorB,data,callback)의 경우, selectorB는 heirarchy 상 selectorA의 child여야 합니다.
+이 상황에서 selectorB를 click할 경우, (당장 직접적으로 selectorB의 click event handler가 있지 않는 이상) 그 scope가 한 단계 올라가서
+selectorA의 click event handler에 의해 처리됩니다.
+그리고 callback 내부의 $(this)는 selectorA를 지칭하는 것이 아니라(비록 모양새는 selectorA의 click event handler일지라도),
+직접적으로 그 event를 trigger한 selectorB를 지칭하게 됩니다!
+이제, 아래의 코드를 다시 봅시다.
+'li'를 클릭할 경우, (기존에 있던 element이건 새로이 만들어진 element이건 상관없이!!) $('li').click event handler가 직접적으로 없기 때문에
+'li'의 mother element인 'ul'의 click event handler가 이를 처리하게 됩니다.
+callback이 $(this).fadeOut(500); 인데, 이 때 this는 해당 'li' element를 뜻하므로, 해당 'li' element가 fadeOut됩니다!!! 
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('ul').on('click','li', function(){
+          $(this).fadeOut(500);
+        });
+        
+        $('#btnAdd').on('click',function(){
+          $('ul').append('<li>New list item</li>');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btnAdd' type='button' value='Add a new list item'/>
+    <ul>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+    </ul>
+  </body>
+</html>

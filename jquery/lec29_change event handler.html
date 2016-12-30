@@ -1,0 +1,75 @@
+<!--
+INPUT, TEXTAREA , SELECT에 변화가 생겼을 때 change event가 발현됩니다!!
+select, radio buttons, checkbox는 select를 하는 순간 change event가 발현되지만, 다른 종류의 element들은 focus를 잃을 때 change event가 발현됩니다!
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      #divResult {
+        background-color: red;
+        color:white;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $(':input').change(function(){
+          var selectedValue = $(this).val() ;
+          $('#divResult').html(selectedValue);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>First Name</td>
+        <td><input type='text' id="firstName" class="inputRequired"/></td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td><input type='text' id='lastName' class='inputRequired'/></td>
+      </tr>
+      <tr>
+        <td>City</td>
+        <td>
+          <select id="ddlCity" lass="inputRequired">
+            <option value="Select">Select</option>
+            <option value="New York">New York</option>
+            <option value="London">London</option>
+            <option value="Sydney">Sydney</option>
+            <option value="Seoul">Seoul</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Favorite Color</td>
+        <td>
+          <input id="radioRed" name='color' type='radio' value="Red" class="inputRequired"/>Red
+          <input id="radioGreen" name='color' type='radio' value="Green" class="inputRequired"/>Green
+          <input id="radioBlue" name='color' type='radio' value="Blue" class="inputRequired"/>Blue
+        </td>
+      </tr>
+      <tr>
+        <td>Contact Method</td>
+        <td>
+          <input id='checkboxEmail' type='checkbox' value="Email" class='inputRequired'/>Email
+          <input id='checkboxPhone' type='checkbox' value="Phone" class='inputRequired'/>Phone
+          <input id='checkboxSocialMedia' type='checkbox' value="Social Media" class='inputRequired'/>Social Media
+        </td>
+      </tr>
+      <tr>
+        <td>Comments</td>
+        <td>
+          <textarea id="comments" class='inputRequired'></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><input id="btnSubmit" type="button" value="Submit"/></td>
+        <td><span id="divResult"></span></td>
+      </tr>
+    </table>
+  </body>
+</html>

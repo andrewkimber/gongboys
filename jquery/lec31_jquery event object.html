@@ -1,0 +1,55 @@
+<!--
+클릭, 마우스오버, 마우스아웃 등과 같은 event가 발생하면, 이 때 관련된 오만가지 정보가 jquery event object로 저장됩니다.
+대표적인 정보로는 이벤트의 종류, 이벤트 당시의 마우스 x,y좌표, 이벤트를 일으킨 html element, 좌클릭 or 우클릭 등등이 있습니다.
+이런 event 정보는 자동적으로 event라는 parameter에 저장됩니다 (마치 anonymous function에 자동적으로 index, element parameter가 있듯이!)
+event methods에는 type, pageX, pageY, target, target.type, target.tagName 등이 있습니다.
+
+***
+아래 getEventDetails에 pass되는 event라는 parameter는 사실, jquery event가 아니라, raw javascript event입니다.
+만약 $(selector).click(function(event){ getEventDetails(event);}); 와 같은 형태로 쓰게 되면, 앞에 붙는 $ 덕분에 자동적으로 이 event parameter를 jquery화해서 인식하겠지만,
+그렇지 않고 $(selector).click(function( ) { getEventDetails(event);}); 와 같이 anonymous function 단계에서 event parameter를 생략해버리면,
+이 event parameter는 jquery event object로 인식되지 못하고 raw javascript object가 되어버립니다. 이 경우, 구버전 익스플로러에서 에러가 발생하게 됩니다.
+
+이런 cross-browser issues를 해결하려면,
+1. 그냥 간단하게 anonymous function에다가 event parameter를 포함시켜서 자동적으로 jquery object화 해버리거나,
+2. getEventDetails function에서 "직.접.적.으.로." event를 jquery object화 해버리는 것입니다.
+  function getEventDetails(event) {
+    var e = $.event.fix(event) <-- 대놓고 event를 jquery object로 강제변형시켜버립니다! 거절은 거절한다!
+    var eventDetails = 'Event = ' + e.type + '<br/>' +
+              ...
+  }
+  이렇게 해버리면 anonymous function에 event parameter를 생략하더라도 getEventDetails 함수에서 강제로 event를 jquery object화 해버리기 때문에 문제가 없습니다!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script>
+      $(document).ready(function(){
+        $('#btn').click(function(event){
+          getEventDetails(event);
+        }).mouseenter(function(event){
+          getEventDetails(event);
+        }).mouseleave(function(event){
+          getEventDetails(event);
+        });
+        
+        function getEventDetails(event) {
+          var eventDetails = 'Event = '+ event.type + '<br/>' +
+                             'X = '+ event.pageX + '<br/>' +
+                             'Y = '+ event.pageY + '<br/>' +
+                             'Target Element = '+ event.target.type + '<br/>' +
+                             'Target Element Tag Name = ' + event.target.tagName ;
+          $('#divResult').html(eventDetails); 
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <input type='button' id='btn' value="Click me"/>
+    <br/><br/>
+    <div id='divResult'></div>
+  </body>
+</html>

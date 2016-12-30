@@ -1,0 +1,57 @@
+<!--
+지금까지 배웠던 것들 총연습! on function 다루기, JSON, mouseover,mouseout, click event 다루기 등등.
+fadeOut(300, functionA) 를 하면, 300ms에 걸쳐 fadeOut이 일어난 후, functionA가 트리거됩니다.
+
+** 다음 강좌에서는, event delegation을 활용하여 현재 이 image gallery를 좀 더 optimize하고, 몇가지 기능도 추가할겁니다!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .imgStyle {
+        height: 100px;
+        width: 120px;
+        border: 3px solid grey;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#imageWrapper img').on({
+          'mouseover' : function() {
+            $(this).css({
+              'cursor':'pointer',
+              'border-color': 'red'
+              });
+          },
+          'mouseout' : function() {
+            $(this).css({
+              'cursor': 'default',
+              'border-color': 'grey'
+            });
+          },
+          'click' : function() {
+            var imageUrl = $(this).attr('src');
+            $('#mainImage').fadeOut(300, function() {
+              $(this).attr('src',imageUrl);
+          }).fadeIn(300);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <img id="mainImage" height='500' width='640' style='border:3px solid grey'
+         src="images/ibrahimovic.jpg"/>
+    <br/>
+    <div id='imageWrapper'>
+      <img src='images/ibrahimovic.jpg' class='imgStyle'/>
+      <img src='images/degea.jpg' class='imgStyle'/>
+      <img src='images/jones.jpg' class='imgStyle'/>
+      <img src='images/pogba.jpg' class='imgStyle'/>
+      <img src='images/rooney.jpg' class='imgStyle'/>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!--
+슬픈건........ jQuery 1.9 버전을 끝으로 live는 없어졌습니다! 그냥 참고삼아 읽어보고 스르륵 지나갑시다.
+아래 코드 실행해도 어차피 안됩니다... 저는 jquery 3.1.1을 쓰거든요!
+
+36강, 37강에서 on, delegate method를 이용해서 event delegation하는 법을 배웠습니다.
+이번 강의에서는 live() method를 이용해서 event delegation을 배워봅시다.
+
+on, delegate는 기본적으로 $(selectorA).on(event_type,selectorB,callback), $(selectorA).delegate(selectorB,event_type,callback)의 형태입니다.
+즉, selectorB에 의해 event가 fire되었을 때, on 및 delegate method는 selectorA 수준까지만 scope이 올라갑니다.
+반면, live method는 scope가 무작정 끝까지도 올라갈 수 있습니다. (최종보스는 document object)
+on, delegate와 대응되는 syntax는 $(selectorB).live(event_type,callback)이 됩니다. (selectorA가 없다는 게 보이죠?)
+
+그러나 결론은, on이 짱입니다!!!! bind, data passing, delegating 전부다 on 으로 해결가능합니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('li').live('click',function(){        //작동 안합니다. jquery 1.9버전을 끝으로  live, die method는 없어졌습니다.
+          $(this).fadeOut(500);
+        });
+        
+        $('#btn').on('click',function(){
+          $('ul').append('<li>New Item</li>');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btn' type='button' value='New item'/>
+    <input id='btnDie' type='button' value='Undelegate!'/>
+    <ul>
+      <li>Existing Item</li>
+      <li>Existing Item</li>
+      <li>Existing Item</li>
+    </ul>
+  </body>
+</html>

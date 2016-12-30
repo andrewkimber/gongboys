@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title></title>
+      <script src="jquery-3.1.1.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('div[title^="Div"]').css('border','2px solid red');
+        });
+        
+      </script>
+    </head>
+    <body>
+       <div title="Div1Title">
+        DIV1
+       </div>
+       <br/>
+       <div title="Div2Title">
+        DIV2
+       </div>
+       <br/>
+       <p title="myTitle-paragraph">This is a paragraph</p>
+       <p title="myTitleHeading">This is also a paragraph</p>
+       <span title="div1Title">SPAN1</span>
+       <br/>
+       <span title="Heading as mySpan">SPAN2</span>
+    </body>
+  </html>
+  
+<!--
+[name='value']: Attribute equals selector: Selects all elements that have title attr value equal to 'value'
+[name!='value']: Attribute not equals selector: Selects all elements that have title attr value not equal to 'value'
+[name:not(title='value')]: Also attribute not equals selector
+[name*='value']: Attribute contains selector: Selects all elements that have title attr value containing the given substring 'value'
+[name~='value']: Attribute contains word selector: Selects all elements that have title attr value containing the gien word 'value', delimited by spaces
+[name|='value']: Attribute contains prefix selector: Selects all elements that have title attr value equal to 'value' or starting with 'value' followed by a hyphen(-)
+[name^='value']: Attribute starts with selector: Selects all elements that have title attr value starting with 'value'
+[name$='value']: Attribute ends with selector: Selects all elements that have title attr value ending with 'value'
+-->

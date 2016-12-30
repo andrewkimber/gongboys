@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  
+<html>
+<head>
+  <title></title>
+  <!--  let's use jQuery from CDN (Content Distribution Network): 쉽게 말하면 그냥 MS, google 등에서 배포하는 jQuery file-->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js"></script>
+
+<!--혹시라도 인터넷이 안되거나 어떠한 문제로든 CDN에서 다운받을 수 없는 경우, local file에 있는 jquery-3.1.1.js를 load하도록!-->
+  <script>
+    window.jQuery || document.write("<script src='jquery-3.1.1.js'><\/script>"); 
+  </script>
+</head>
+<body>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#button1').click(function() {
+        alert('jQuery from CDN server!');
+      });
+    });
+  </script>
+  <input type="button" id="button1" value="Click me"/>
+</body>
+</html>

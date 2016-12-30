@@ -1,0 +1,38 @@
+<!--
+아래와 같이 코드를 짜는 경우, 기존의 Existing list item은 click event handler에 의해 fadeOut이 되지만,
+이후에 #btnAdd 클릭을 통해 새로이 생성된 New list item은 click event의 영향을 받지 않습니다. 즉, New list item은 눌러도 fadeOut 되지 않지요.
+line 24에다가
+var newListItem = $('<li>New list item</li>').on('click',function(){
+  $(this).fadeOut(500);
+});
+과 같이 새로이 생성되는 element에다가 능동적으로 click event handler를 bind해주면 새로이 생성된 New item list에 대해서도 fadeOut이 적용이 되긴 하겠지요.
+그러나 이 방법의 근본적인 문제점은, 만약 500개의 list item이 있으면, 메모리에 똑같은 click event handler만 500개가 들어앉는단 소리입니다. 메모리의 낭비지요.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('li').on('click',function(){
+          $(this).fadeOut(500);
+        });
+        
+        $('#btnAdd').on('click',function(){
+          var newListItem = '<li>New list item</li>';
+          $('ul').append(newListItem);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btnAdd' type='button' value='Add a new list item'/>
+    <ul>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+    </ul>
+  </body>
+</html>

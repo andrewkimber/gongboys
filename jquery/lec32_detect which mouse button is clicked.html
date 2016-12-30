@@ -1,0 +1,35 @@
+<!--
+event handler의 which method가 자동으로 좌클릭, 스크롤클릭, 우클릭을 detect합니다.
+좌클릭일 경우 event.which = 1
+스크롤클릭일 경우 event.which = 2
+우클릭일 경우 event.which = 3
+
+내용과는 별개로, switch & case를 이용한 branching syntax도 익혀둡시다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script>
+      $(document).ready(function(){
+        $ ('#btn').mouseup(function(event){
+          var whichButton='';
+          switch (event.which) {
+            case 1: whichButton = "Left Button Clicked"; break;
+            case 2: whichButton = "Middle Button Clicked"; break;
+            case 3: whichButton = "Right Button Clicked"; break;
+            default: whichButton = "Invalid Button Clicked"; break;
+          }
+          $('#divResult').html(whichButton);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type='button' id='btn' value="Click me"/>
+    <br/><br/>
+    <div id='divResult'></div>
+  </body>
+</html>

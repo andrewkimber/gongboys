@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <title></title>
+      <script src="jquery-3.1.1.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $('.small.big').css('border', '5px solid red');
+        });
+      </script>
+    </head>
+    <body>
+      <div class="small big">
+        DIV 1
+      </div>
+      
+      <div class="small">
+        DIV2
+        <br/>
+        <div class="big">
+          DIV3
+        </div>
+      </div>
+    </body>
+  </html>
+  
+  <!--//        .small.big: DIV1이 선택됨.  $('.small').filter('.big')와 동일!!!! -->
+<!--//        .small .big:DIV2가 선택됨.-->
+<!--//        .small,.big:DIV1 DIV2 DIV3 다 선택됨.-->

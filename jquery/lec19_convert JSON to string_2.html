@@ -1,0 +1,35 @@
+ <!--
+In order to convert string into JSON, use JSON.parse method.
+
+*********
+JSONstring = "[{'name':'andrew'}]" 는 JSON.parse(JSONstring)이 에러가 나고,
+JSONstring = '[{"name":"andrew"}]' 는 됩니다!!!! JSON.parse는 strict하게 ""를 지켜줘야 합니다!!! ㅠㅠㅠㅠ
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var JSONstring='[{"firstName":"Todd", "lastName":"Haynes","gender":"Male","salary":150000},{ "firstName":"Ian","lastName":"McCullen","gender": "Male","salary":200000}]';
+        
+        var employeeJSON = JSON.parse(JSONstring);
+        
+        var result='';
+        $.each(employeeJSON,function(i,item) {
+          result+= 'First name = ' + item.firstName + '<br/>';
+          result+= 'Last name = ' + item.lastName + '<br/>';
+          result+= 'Gender = ' + item.gender + '<br/>';
+          result+= 'Salary = ' + item.salary + '<br/><br/>';
+        });
+        
+        $('#divResult').html(result);
+      });
+    </script> 
+  </head>
+  <body>
+    <div id='divResult'></div>
+  </body>
+</html>

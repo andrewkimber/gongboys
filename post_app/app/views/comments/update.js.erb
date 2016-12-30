@@ -1,0 +1,20 @@
+var comment_div = $('div#comment_<%=@comment.id%>');
+var form = $('div#comment_<%=@comment.id%> form');
+var comment_content = $('div#comment_<%=@comment.id%> form input[id="comment_body"]').val();
+var submit_btn = $('div#comment_<%=@comment.id%> form input[type="submit"]');
+var destroy_btn = $('#destroybtn_<%=@comment.id%>');
+
+if (comment_content.length ==0)
+{
+  alert('Comment cannot be blank!');
+}
+
+else {
+  form.replaceWith('<span id="body">'+comment_content+'</span>');
+  submit_btn.replaceWith('<a id="editbtn_<%=@comment.id%>" data-remote:"true" href="/comments/<%=@comment.id%>/edit">Edit</a>');
+  
+  var edit_btn = $('#editbtn_<%=@comment.id%>');
+  edit_btn.css('display','inline');
+  destroy_btn.css('display','inline');
+  $('div#<%=dom_id(@comment)%> #newUpdateBtn').css('display','none');
+}

@@ -1,0 +1,48 @@
+<!--
+.each(callback, arg)는 jQuery method이기 때문에 jQuery object collection에 대해서 chaining하여 사용할 수 있는 반면,
+iteration하려는 대상 collection이 jQuery object가 아닌 raw javascript array인 경우, 여기에다가 each를 쓰려면 $.each(collection,callback,arg) 형태여야 합니다.
+
+.each는 .each(callback, arg)의 두개의 parameter로 구성되어있는데, 이 callback이라는 게 각 each element에 시행할 "행위", 또는 "함수"인 셈.
+이 callback에 해당하는 함수를 외부에서 정의하지 않고, 내부에서 곧바로 정의해버리는 것을 anonymous function(이름 없는 함수)이라 하는데, 이게 바로 지금까지 자주 봐왔던
+each(function(){ }); 형태입니다.
+항상 function(){ }); 형태로 써왔습니다만, 사실 each method의 callback에 해당하는 함수에는 기본적으로 index, element 두개의 parameter가 지정되어 있습니다.
+이 때 유의할 점은, ****이 element는 jQuery object가 아니라, raw DOM object 라는 사실!!!!!!****
+그러므로 이 element에다가 text(), html() 등과 같은 jQuery method를 chain하고 싶으면, 반드시 $(element)로 jQuery object화 해줘야 한다는 것🚩🚩🚩!
+---여담으로, 이 element parameter의 동의어가 this입니다.
+즉, this는 jQuery object가 아니라, iteration하는 raw DOM element인 것. 이게 지금까지 봐왔던 $(this) 의 비밀! ---
+아래 line 28을 참고.
+
+그 아래의 intArray 예제를 살펴보자. intArray는 애초에 jQuery object가 아니기 때문에, iteration을 위해서는 $.each(intArray,callback,arg) 형태가 되어야한다.
+이 때, callback을 anonymous function으로 설정하였을 때, 위의 예제와는 달리 element에 굳이 $(element).text() 같은 짓(?)을 하지 않아도 정상적으로 array 값들이 출력된다.
+그 이유는 애초에 element가 intArray의 raw integer-type datum이기 때문.
+위의 예제에서는 element가 <li>반도</li> 따위의 raw DOM object였기 때문에 해당 text를 뽑아내기 위해서는 억지로 jQuery화 해서 text method를 chaining 해야했던 것!
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('li').each(function (index,element) {
+          alert("INDEX = "+index+", VALUE = "+ $(element).text());  // element 대신 this 를 써도 동일!!
+        });
+        
+        var intArray = [100,200,300,400,500];
+        $.each(intArray, function(index, element){
+          alert(element);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>반도</li>
+      <li>대륙</li>
+      <li>성진국</li>
+      <li>천조국</li>
+      <li>튤립국</li>
+      <li>불란서</li>
+    </ul>
+  </body>
+</html>

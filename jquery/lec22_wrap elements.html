@@ -1,0 +1,87 @@
+<!--
+wrap: Wrap an HTML structure around each element in the set of matched elements
+
+unwrap: Remove the ***PARENTS*** of the set of matched elements from the DOM
+
+wrapAll: Wrap an HTML structure around all elements in the set of matched elements. 각각의 div를 둘러싸는 게 아니라, 크으~게 둘러싼다는 뜻.
+         만약 중간에 다른 element로 끊겨있다면 어떻게 될까? :
+                    밑에 wrapAll2 참고. 브라우저에 출력해보면, 중간에 끼여있던 놈은 밑으로 빠져나오고 wrapAll2 3개가 wrap_div로 둘러싸인다!!
+                    즉, 중간에 다른 element로 끊겨있으면 그 element를 밑으로 보내버리고 matched elements를 다 묶어서 둘러쌈.
+                    
+wrapInner: Wrap an HTML structure around the content of each element in the set of matched elements.
+           matched element의 바로 내부 요소들을 둘러싸는 element를 만든다!
+           그렇다면...wrapInner를 한 다음에 unwrap을 하면, 어느 element가 지워질까? parent? child?:
+           밑에 wrapInnerUnwrap를 보자! (다른 div elements가 같이 select되는 걸 막기 위해 요놈만 span을 썼습니당)
+           matched element에 parent와 child가 모두 포함되어 있다면, 그 중 parent를 unwrap하도록 설계되어있습니다!
+           
+
+실제로 html에 생긴 변화를 개발자모드로 inspect해봅시다!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style>
+      .wrap_div, .wrap_span
+      {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        margin: 3px;
+      }
+    </style>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('div.wrap').wrap('<div class="wrap_div"></div>');
+        $('div.unwrap').unwrap();
+        $('div.wrapAll').wrapAll('<div class="wrap_div"></div>');
+        $('div.wrapAll2').wrapAll('<div class="wrap_div"></div>');
+        $('div.wrapInner').wrapInner('<div class="wrap_div"></div>');
+        
+        $('span').wrapInner('<span class="wrap_span"></span>');
+        $('span').unwrap();
+      });
+    </script>
+  </head>
+  <body>
+    <div class="wrap">WRAP</div>
+    <div class="wrap">WRAP</div>
+    <div class="wrap">WRAP</div>
+    <br/><br/>
+    
+    <div class="unwrap_me">
+      <div class="unwrap">UNWRAP</div>  
+    </div>
+    <div class="unwrap_me">
+      <div class="unwrap">UNWRAP</div>  
+    </div>
+    <div class="unwrap_me">
+      <div class="unwrap">UNWRAP</div>  
+    </div>
+    <br/><br/>
+    
+    <div class="wrapAll">WRAPALL</div>
+    <div class="wrapAll">WRAPALL</div>
+    <div class="wrapAll">WRAPALL</div>
+    <br/><br/>
+    
+    
+    <div class="wrapAll2">WRAPALL2</div>
+    <div class="wrapAll2">WRAPALL2</div>
+    <div class="INTRUDER">침입자다!!!</div>
+    <div class="wrapAll2">WRAPALL2</div>
+    <br/><br/>
+    
+    <div class='wrapInner'>WRAPINNER</div>
+    <div class='wrapInner'>WRAPINNER</div>
+    <div class='wrapInner'>WRAPINNER</div>
+    <br/><br/>
+    
+    
+    <span class="wrapInner">WRAPINNERUNWRAP</span><br/>
+    <span class="wrapInner">WRAPINNERUNWRAP</span><br/>
+    <span class="wrapInner">WRAPINNERUNWRAP</span><br/>
+  </body>
+</html>

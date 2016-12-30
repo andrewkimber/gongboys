@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.js"></script>
+  </head>
+  <body>
+<!--    밑에 주석 확인!-->
+    <script type="text/javascript">
+      $(document).ready( function() {
+        //this code will raise a TypeError in DevTool(press F12)
+        // document.getElementById('button2').style.backgroundColor = 'yellow';
+        
+        $('#button1').css('background-color','yellow');
+      
+        if($('#button1').length >0)
+        {
+          alert('element found!');
+        }
+        else
+        {
+          alert('element not found');
+        }
+      });
+    </script>
+<!--    jQuery #id selector returns only the first element if you have 2 or more elements with the same ID.
+        Therefore, HTML element IDs must be unique-->
+    <input id="button1" type="button" value="I'm yellow!"/></br>
+    <input id="button1" type="button" value="I'm not yellow!"/>
+  </body>
+</html>
+
+<!--
+1. Raw javascript의 경우, getElementById가 element를 찾지 못하면 DevTool로 들어가보면 TypeError가 발생함.
+그런데 jQuery의 경우엔 ID selector가 element를 찾지 못하더라도 error를 일으키지 않기 때문에,
+selector가 element를 찾았는지 못 찾았는지 판단하기가 어려울 수 있다.
+그럴 땐 .length를 이용해서 확인하면 된다!!!! 
+
+2. raw Javascript의 getElementById는 순수하게 DOM object를 return한다.
+반면, jQuery의 $('#ID')는 jQuery object (that contains the DOM object)를 return하기 떄문에,
+.css(), .click() 등과 같은 추가적인 jQuery functionality를 chain할 수 있다.
+jQuery로 raw DOM object를 get하려면 $('#ID')[0] 하면 된다.
+즉, jQuery $('#ID')는 <JQUERY><DOM object></JQUERY> 같은 느낌이라 생각하면 될 듯!
+(Nokogiri가 모든 html element를 Nokogiri tag로 둘러싸서 Nokogiri object로 변환시키는 것처럼)
+
+3. 일반적으로 getElementById가 jQuery ID selector보다 빠르기 때문에,
+jQuery의 additional functionality를 위한 것이 아닌 단순한 작업을 할 땐 getElementById를 쓰도록 하자!
+-->

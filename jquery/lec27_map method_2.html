@@ -1,0 +1,41 @@
+<!--
+이번 예제에서는 map method를 이용해 concatenated string을 만들어봅니다.
+line 15-19은 map method를, 21-26는 each method를 이용합니다.
+line 25에서, 마지막에 additional | 가 붙는 것을 강제로 지우기 위해 substr method를 써줍니다.
+두 방법을 비교하면서 공부해봅시다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        var string = '';
+        string += $('li').map(function(){
+          return $(this).text();
+        }).get().join('|');
+        $('#result').html(string);
+        
+        var string2='';
+        $('li').each(function(index,element){
+          string2 += $(element).text() + '|';
+        });
+        string2 = string2.substr(0,string2.length-1);
+        $('#result2').html(string2);
+      });
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>반도</li>
+      <li>천조국</li>
+      <li>성진국</li>
+      <li>대륙</li>
+    </ul>
+    <br/><br/>
+    <div id='result'></div>
+    <div id='result2'></div>
+  </body>
+</html>

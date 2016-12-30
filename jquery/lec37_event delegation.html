@@ -1,0 +1,44 @@
+<!--
+Delegation method는, event handler가 해당 element의 모든 자식 element에 영향을 미치도록 하는 method입니다. (연좌제, 3대를 멸하라 등의 느낌을 떠올립시다)
+(그 child element가 처음부터 존재했던 element이건, dyanmically created element이건 상관없이).
+앞서 36강에서 보았던 on(event_type,selector,data,callback)이 바로 event delegation을 해주는 method입니다.
+on()과 거의 동일한 방법이 delegate()입니다. 단지 event_type과 selector의 순서가 다를 뿐입니다.
+
+아래 예제는 앞서 37강과 똑같은 예제입니다. on()에서 delegate()로 바뀐게 유일한 차이입니다. 'li' 와 'click'의 순서가 달라진 점 정도만 유의합시다.
+
+반대로 event delegation되는 것을 끊으려면, off()나 undelegate()를 쓰면 됩니다. on, delegate와 마찬가지로 event_type과 selector의 순서만 반대입니다.
+
+다만 jquery 1.7 이상의 버전에서는 delegate()보다는 on()을 더 추천한답니다 (on method 짱짱맨. event binding도 씹어먹고 data passing도 씹어먹고 delegation도 씹어먹고)
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('ul').delegate('li','click', function(){
+          $(this).fadeOut(500);
+        });
+        
+        $('#btnAdd').on('click',function(){
+          $('ul').append('<li>New list item</li>');
+        });
+        
+        $('#btnUndelegate').click(function(){
+          $('ul').undelegate('li','click');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btnAdd' type='button' value='Add a new list item'/>
+    <input id='btnUndelegate' type='button' value='Undelegate'/>
+    <ul>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+      <li>Existing list item</li>
+    </ul>
+  </body>
+</html>

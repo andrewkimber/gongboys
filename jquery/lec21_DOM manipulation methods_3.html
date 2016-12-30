@@ -1,0 +1,51 @@
+<!--
+attribute setter method는 JSON object도 parameter로 쓸 수 있다.
+attribute를 없애려면, removeAttr('attr') 를 쓰면 된다!!
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var config = {
+          'title': 'NEW DIV title',
+          'style': 'border:3px solid red',
+          'name': 'My Div'
+          };
+        //attr setter method accepts JSON objects too!
+        $('div').attr(config); //this is an attribute setter method, so we don't need to explicitly iterate thru the divs.
+                               //jQuery takes care of the iteration automatically.
+
+        var result ='';
+        $('div').each(function(){
+          result += 'title = ' + $(this).attr('title')+'<br/>';
+          result += 'style = ' +$(this).attr('style')+'<br/>';
+          result += 'name = ' + $(this).attr('name')+'<br/><br/>';
+        });
+        $('#resultSpan').html(result);
+        
+        
+        var resultString = "DIV elements with 'title' attribute before removeAttr= " + $('div[title]').length+'<br/>';
+        $('#resultSpan2').html(resultString);
+        $('div').removeAttr('title');  // this will remove the 'title' attribute from all divs!!!
+        resultString += "DIV elements with 'title' attribute after removeAttr= " + $('div[title]').length;
+        $('#resultSpan2').html(resultString);
+        
+      });
+    </script>
+  </head>
+  <body>
+    <div id="div1" title="TITLE1">
+      DIV1
+    </div>
+    <div id="div2" title='TITLE2'>
+      DIV2
+    </div>
+    <br/>
+    <span id='resultSpan'></span>
+    <span id='resultSpan2'></span>
+  </body>
+</html>

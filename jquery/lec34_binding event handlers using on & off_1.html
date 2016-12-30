@@ -1,0 +1,60 @@
+<!--
+on method는 좀 더 큰 개념의 event handler라고 생각하면 됩니다.
+$(selector).click(functionA) == $(selector).on('click',functionA)
+와 같이, 'click'이라는 event type 자체가 on method의 첫번째 parameter라 생각하면 간단합니다.
+on이 멋진 이유는, 여러 개의 event type을 한꺼번에 bind할 수 있다는 것입니다.
+아래 line 27 을 봅시다 . '#btn' 에다가 click, mouseover, mouseout 3가지를 한번에 설정한 모습입니다.
+
+만약 위 상황에서 event handler를 없애버리고 싶다면, off method를 쓰면 됩니다.
+line 45: btn3를 누르면, btn에서 mouseover effect를 없앱니다. 다시 mouseover effect를 살리고 싶으면 btn2를 누르면 되고요.
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .ButtonStyle {
+        background-color: blue;
+        font-weight: bold;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px 5px 5px 5px;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('#btn').on('click mouseover mouseout',function(event) {
+           if (event.type =="click") {
+            $('#divResult').html("Button clicked at X = "+event.pageX+ ", Y = " + event.pageY);
+           }
+           else if (event.type =="mouseover") {
+            $(this).addClass('ButtonStyle');
+           }
+           else {
+            $(this).removeClass('ButtonStyle');
+           }
+        });
+        
+        $('#btn2').click(function() {
+          $('#btn').on('mouseover',function(){
+            $(this).addClass('ButtonStyle');
+          });
+          $('#divResult').html('mouseover effect enabled!');
+        });
+          
+        $('#btn3').click(function() {
+          $('#btn').off('mouseover');
+          $('#divResult').html('mouseover effect disabled!');
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id='btn' type="button" value="Click me"/>
+    <input id='btn2' type='button' value="Enable Mouseover Effect"/>
+    <input id='btn3' type='button' value="Disable Mouseout Effect"/>
+    <br/>
+    <div id='divResult'></div>
+  </body>
+</html>

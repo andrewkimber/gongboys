@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <title></title>
+      <script src='jquery-3.1.1.js'></script>
+      <script type="text/javascript">
+//  $(window).on('load',function(){}); fires earlier than $(document).ready(function(){});.
+//  However, as in jQuery 3.x,
+//  both methods DO fire after all imgs, css, frames etc are fully loaded. So, don't bother minding which one to use.
+//  $(document).ready is just fine for almost all cases.
+
+        $(window).on('load',function() {
+          alert('window on load');
+        });
+        
+        $(document).ready(function() {
+          alert('document ready');
+        });
+      </script>
+    </head>
+    <body>
+    </body>
+  </html>

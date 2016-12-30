@@ -1,0 +1,73 @@
+<!--
+이번 강좌에서는 slideshow 기능을 구현해봅시다.
+
+$.inArray(elem,array) : array에서 elem의 index를 리턴합니다.
+setInterval(function,delay) : delay(ms) 마다 function을 trigger합니다.
+clearInterval(interval identifier) : interval object를 parameter로 받아, 해당 interval을 멈춰버립니다.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <style>
+      .imgStyle {
+        height: 100px;
+        width: 120px;
+        border: 3px solid grey;
+      }
+    </style>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        var imageURLs = [];
+        var intervalId;
+        var btnStart = $('#btnStartSlideShow');
+        var btnStop = $('#btnStopSlideShow');
+        
+        $('#imageWrapper img').each(function(){
+          imageURLs.push($(this).attr('src'));
+        });
+        
+        function setImage()
+        {
+          var mainImageElement = $('#mainImage');
+          var currentImageURL = mainImageElement.attr('src');
+          var currentImageIndex = $.inArray(currentImageURL,imageURLs);
+          //마지막 thumbnail에 도달했을 경우, 다시 처음으로 돌아가기 위해서!
+          if (currentImageIndex == (imageURLs.length -1)) {currentImageIndex = -1;}
+          
+          mainImageElement.attr('src',imageURLs[currentImageIndex+1]);
+        }
+        
+        btnStart.click(function(){
+          intervalId = setInterval(setImage,1000);
+          $(this).attr('disabled','disabled');
+          btnStop.removeAttr('disabled');
+        });
+        
+        btnStop.click(function(){
+          clearInterval(intervalId);
+          $(this).attr('disabled','disabled');
+          btnStart.removeAttr('disabled');
+          
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type='button' id='btnStartSlideShow' value="Start Slide Show"/>
+    <input type='button' id='btnStopSlideShow' disabled='disabled' value="Stop Slide Show"/>
+    <br/><br/>
+    <img id="mainImage" height='500' width='640' style='border:3px solid grey'
+         src="images/ibrahimovic.jpg"/>
+    <br/>
+    <div id='imageWrapper'>
+      <img src='images/ibrahimovic.jpg' class='imgStyle'/>
+      <img src='images/degea.jpg' class='imgStyle'/>
+      <img src='images/jones.jpg' class='imgStyle'/>
+      <img src='images/pogba.jpg' class='imgStyle'/>
+      <img src='images/rooney.jpg' class='imgStyle'/>
+    </div>
+  </body>
+</html>

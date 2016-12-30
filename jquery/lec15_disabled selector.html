@@ -1,0 +1,55 @@
+<!--
+Disabled elements can be selected by $(':disabled') selector.
+in order to disable inputs, add disabled="disabled" to  the input attribute.
+
+Enabled elements can be selected by $(':enabled') selector.
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src='jquery-3.1.1.js'></script>
+    <script type='text/javascript'>
+      $(document).ready(function(){
+        $('input[type="text"]:disabled').css('border','2px solid red');
+        
+        $(':enabled').css('border','2px solid blue');
+      });
+      
+    </script>
+  </head>
+  <body style="font-family:Helvetica">
+    <table>
+      <tr>
+        <td>First name</td>
+        <td><input type="text" disabled="disabled"/></td>
+      </tr>
+      <tr>
+        <td>Last name</td>
+        <td><input type="text" disabled="disabled"/></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="text"/></td>
+      </tr>
+      <tr>
+        <td>Gender</td>
+        <td>
+          <select id="selectGender" disabled="disabled">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>Comments</td>
+        <td><textarea name="Comments"></textarea></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="submit" disabled="disabled"/> </td>
+      </tr>
+    </table>
+  </body>
+</html>
