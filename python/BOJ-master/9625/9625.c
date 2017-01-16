@@ -1,0 +1,1 @@
+a=1,b,i;main(){scanf("%d",&i);while(i--){b+=a;a=b-a;}printf("%d %d",a,b);}

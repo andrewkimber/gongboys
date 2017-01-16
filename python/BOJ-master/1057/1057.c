@@ -1,0 +1,1 @@
+a,b,i;main(){scanf("%d%d%d",&a,&a,&b);for(;a!=b;a++,b++,a/=2,b/=2,i++);printf("%d",i);}

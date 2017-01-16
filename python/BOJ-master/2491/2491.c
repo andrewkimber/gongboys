@@ -1,0 +1,1 @@
+main(a,i,b){int c=1,d=1,e=1;for(scanf("%d%d",&i,&a);--i;a=b){scanf("%d",&b);if(b>=a)c++;else c=1;if(a>=b)d++;else d=1;if(e<c)e=c;if(e<d)e=d;}printf("%d",e);}
