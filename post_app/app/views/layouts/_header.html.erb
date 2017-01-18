@@ -3,6 +3,10 @@
     <%= link_to "HOME", root_path, id: "logo" %>
     <%if logged_in?%>
       <%=link_to "New Post", new_post_path, id: "newpost"%>
+      <%=form_tag posts_path, :method => 'get' do %>
+        <%= text_field_tag :search, params[:search], id: "search_form", class: 'form-control'%>
+        <%= submit_tag "SEARCH" , id: "search_btn", class: 'btn btn-primary btn-xs'%>
+      <%end%>
     <%end%>
     
     <nav>

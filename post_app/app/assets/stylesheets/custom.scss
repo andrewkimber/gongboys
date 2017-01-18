@@ -107,6 +107,23 @@ header div nav ul li {
   text-decoration: none;
 }
 
+#search_form {
+  height: 1.5em;
+  float: left;
+  width: 30%;
+  margin-top: 15px;
+  padding-bottom: -5px;
+  margin-left: 20px;
+}
+
+#search_btn {
+  float:left;
+  margin-left: 5px;
+  margin-top: 15px;
+  background-color: whitesmoke;
+  color: black;
+  font-weight: bold;
+}
 
 /* footer */
 

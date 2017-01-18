@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 5)
+    @posts = Post.search(params[:search]).paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.html
       #this is for infinite scrolling.Uncommenting format.js will allow access to pagination.js.coffee and index.js.erb
