@@ -1,25 +1,0 @@
-{:uriI"file:///Users/andrewkim/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/ckeditor-4.2.0/vendor/assets/javascripts/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt?type=text/plain&id=c77e5aa63ddeaaa9be0a56b06aa5aa184fcc6c2ec98688975fb93db02570b018:ET:load_pathI"m/Users/andrewkim/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/ckeditor-4.2.0/vendor/assets/javascripts;T:filenameI"©/Users/andrewkim/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/ckeditor-4.2.0/vendor/assets/javascripts/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt;T:	nameI"Ackeditor/plugins/specialchar/dialogs/lang/_translationstatus;T:logical_pathI"Eckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt;T:content_typeI"text/plain;T:sourceI"¼Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
-For licensing, see LICENSE.md or http://ckeditor.com/license
-
-cs.js      Found: 118 Missing: 0
-cy.js      Found: 118 Missing: 0
-de.js      Found: 118 Missing: 0
-el.js      Found: 16 Missing: 102
-eo.js      Found: 118 Missing: 0
-et.js      Found: 31 Missing: 87
-fa.js      Found: 24 Missing: 94
-fi.js      Found: 23 Missing: 95
-fr.js      Found: 118 Missing: 0
-hr.js      Found: 23 Missing: 95
-it.js      Found: 118 Missing: 0
-nb.js      Found: 118 Missing: 0
-nl.js      Found: 118 Missing: 0
-no.js      Found: 118 Missing: 0
-tr.js      Found: 118 Missing: 0
-ug.js      Found: 39 Missing: 79
-zh-cn.js   Found: 118 Missing: 0
-;T:metadata{	:dependencieso:Set:
-@hash{
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"4processors:type=text/plain&file_type=text/plain;TTI"·file-digest:///Users/andrewkim/.rbenv/versions/2.2.5/lib/ruby/gems/2.2.0/gems/ckeditor-4.2.0/vendor/assets/javascripts/ckeditor/plugins/specialchar/dialogs/lang/_translationstatus.txt;TT:charsetI"
-utf-8;F:digest"%ôÕ-_»L9.§÷´Ê÷övü×ô_¡Å†q¥-!Ç/:lengthi¼:dependencies_digest"%Á:Åü oýÊp/ _²A¶£êë:#–…Ý›Ñ}ªpÄ:idI"Ec77e5aa63ddeaaa9be0a56b06aa5aa184fcc6c2ec98688975fb93db02570b018;F:
-mtimel+d8VX
